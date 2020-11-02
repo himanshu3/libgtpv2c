@@ -782,7 +782,7 @@ typedef struct gtp_bearer_context_ie_t {
 
 typedef struct gtp_charging_id_ie_t {
   ie_header_t header;
-  uint8_t chrgng_id_val;
+  uint32_t chrgng_id_val;
 } gtp_charging_id_ie_t;
 
 typedef struct gtp_chrgng_char_ie_t {

@@ -2180,11 +2180,11 @@ if (value->linked_eps_bearer_id.header.len)
 if (value->pco.header.len)
         encoded += encode_gtp_prot_cfg_opts_ie(&(value->pco), buf + encoded);
 
-	for(uint8_t i= 0; i< value->bearer_count; i++) {
-		if (value->bearer_contexts_created[i].header.len) {
-			encoded += encode_gtp_create_sess_response_bearer_ctxt_created_ie(&(value->bearer_contexts_created[i]), buf + encoded);
-		}
+for(uint8_t i= 0; i< value->bearer_count; i++) {
+	if (value->bearer_contexts_created[i].header.len) {
+		encoded += encode_gtp_create_sess_response_bearer_ctxt_created_ie(&(value->bearer_contexts_created[i]), buf + encoded);
 	}
+}
 
 if (value->bearer_contexts_marked_removal.header.len)
         encoded += encode_gtp_create_sess_response_bearer_ctxt_marked_removal_ie(&(value->bearer_contexts_marked_removal), buf + encoded);
@@ -5961,15 +5961,15 @@ int encode_change_noti_req(change_noti_req_t *value,
 	if (value->lbi.header.len)
 		encoded += encode_gtp_eps_bearer_id_ie(&(value->lbi), buf + encoded);
 
-    if (value->pres_rptng_area_info.header.len)
-        encoded += encode_gtp_pres_rptng_area_info_ie(&(value->pres_rptng_area_info), buf + encoded);
+	if (value->pres_rptng_area_info.header.len)
+		encoded += encode_gtp_pres_rptng_area_info_ie(&(value->pres_rptng_area_info), buf + encoded);
 
 	for(uint8_t i = 0; i< value->second_rat_count; i++) {
 		if(value->secdry_rat_usage_data_rpt[i].header.len)
 			encoded += encode_gtp_secdry_rat_usage_data_rpt_ie(&(value->secdry_rat_usage_data_rpt[i]), buf + encoded);
 	}
 
-        ((gtpv2c_header_t *) buf)->gtpc.message_len = htons(encoded - IE_HEADER_SIZE);
+	((gtpv2c_header_t *) buf)->gtpc.message_len = htons(encoded - IE_HEADER_SIZE);
 	return encoded;
 }
 
@@ -5994,13 +5994,14 @@ int encode_change_noti_rsp(change_noti_rsp_t *value,
 	if (value->imsi.header.len) {
 		encoded += encode_gtp_imsi_ie(&(value->imsi), buf + encoded);
 	}
+
 	if(value->cause.header.len)
 		encoded += encode_gtp_cause_ie(&(value->cause), buf + encoded);
 
     if (value->pres_rptng_area_act.header.len)
         encoded += encode_gtp_pres_rptng_area_act_ie(&(value->pres_rptng_area_act), buf + encoded);
 
-        ((gtpv2c_header_t *) buf)->gtpc.message_len = htons(encoded - IE_HEADER_SIZE);
+    ((gtpv2c_header_t *) buf)->gtpc.message_len = htons(encoded - IE_HEADER_SIZE);
 	return encoded;
 }
 

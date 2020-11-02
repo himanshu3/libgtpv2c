@@ -1141,7 +1141,7 @@ int decode_gtp_pres_rptng_area_act_ie(uint8_t *buf,
     }
     if(value->number_of_sai > 0){
         for(int i = 0; i < value->number_of_sai; i++)
-            total_decoded += decode_sai_field(buf + total_decoded, &value->sais[i]);  
+            total_decoded += decode_sai_field(buf + total_decoded, &value->sais[i]);
     }
     if( value->number_of_cgi > 0){
         for(int i = 0; i < value->number_of_cgi; i++)
@@ -2386,7 +2386,7 @@ int decode_gtp_charging_id_ie(uint8_t *buf,
     uint16_t total_decoded = 0;
     total_decoded += decode_ie_header_t(buf, &(value->header), IE_HEADER_SIZE);
     uint16_t decoded = 0;
-    value->chrgng_id_val = decode_bits(buf, total_decoded, 8, &decoded);
+    value->chrgng_id_val = decode_bits(buf, total_decoded, 32, &decoded);
     total_decoded += decoded;
     return value->header.len + IE_HEADER_SIZE;
 }
